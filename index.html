@@ -327,33 +327,103 @@
       line-height: 1.3;
     }
     #preco h2 em { font-style: normal; color: var(--ouro-cl); }
-    .preco-box {
-      display: inline-block;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(201,168,76,.4);
-      border-radius: 12px;
-      padding: 36px 48px;
-      margin-bottom: 32px;
-      min-width: 280px;
+    .planos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 680px;
+      margin: 0 auto 32px;
     }
-    .preco-box .de {
-      font-size: 1rem;
-      color: rgba(255,255,255,.45);
+    @media (max-width: 640px) {
+      .planos-grid { grid-template-columns: 1fr; }
+    }
+    .plano-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 14px;
+      padding: 32px 24px;
+      text-align: center;
+      position: relative;
+    }
+    .plano-card.destaque {
+      border-color: var(--ouro);
+      background: rgba(201,168,76,.08);
+      box-shadow: 0 0 32px rgba(201,168,76,.18);
+    }
+    .badge-top {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ouro);
+      color: #1a1a1a;
+      font-size: .68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .plano-label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,.5);
+      margin-bottom: 14px;
+    }
+    .plano-card.destaque .plano-label { color: var(--ouro-cl); }
+    .plano-card .de {
+      font-size: .95rem;
+      color: rgba(255,255,255,.4);
       text-decoration: line-through;
       margin-bottom: 6px;
+      min-height: 1.4em;
     }
-    .preco-box .por {
-      font-size: 3.2rem;
+    .plano-card .por {
+      font-size: 3rem;
       font-weight: 800;
       color: var(--ouro-cl);
       line-height: 1;
     }
-    .preco-box .por span.prefix { font-size: 1.6rem; vertical-align: top; line-height: 2; }
-    .preco-box .unico {
-      font-size: .85rem;
-      color: rgba(255,255,255,.55);
+    .plano-card .por span.prefix { font-size: 1.5rem; vertical-align: top; line-height: 2; }
+    .plano-card .por span.suffix { font-size: 1.1rem; vertical-align: bottom; line-height: 2.2; font-weight: 600; }
+    .plano-card .unico {
+      font-size: .83rem;
+      color: rgba(255,255,255,.5);
       margin-top: 8px;
     }
+    .badge-garantia {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 20px;
+      padding: 5px 13px;
+      font-size: .78rem;
+      color: rgba(255,255,255,.75);
+      margin-top: 12px;
+    }
+    .plano-btn {
+      display: block;
+      margin-top: 20px;
+      background: var(--verde-cl);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 14px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .plano-btn:hover { background: #1e5b9a; transform: translateY(-2px); }
+    .plano-card.destaque .plano-btn {
+      background: var(--ouro);
+      color: #1a1a1a;
+    }
+    .plano-card.destaque .plano-btn:hover { background: var(--ouro-cl); }
     .checklist {
       list-style: none;
       max-width: 440px;
@@ -647,12 +717,34 @@
 ════════════════════════════════════════════════ -->
 <section id="preco">
   <div class="container">
-    <h2>Invista <em>R$ 97</em> para prescrever<br>com a segurança de um especialista</h2>
+    <h2>Escolha como quer ter o Dr. Ikeda<br><em>ao seu lado</em></h2>
 
-    <div class="preco-box">
-      <div class="de">De R$ 257,00</div>
-      <div class="por"><span class="prefix">R$&nbsp;</span>97<span style="font-size:1.5rem; vertical-align:bottom; line-height:1.8">,00</span></div>
-      <div class="unico">Pagamento único — sem mensalidade</div>
+    <div class="planos-grid">
+
+      <!-- PAGAMENTO ÚNICO -->
+      <div class="plano-card">
+        <div class="plano-label">Pagamento Único</div>
+        <div class="de">De R$ 257,00</div>
+        <div class="por"><span class="prefix">R$&nbsp;</span>97<span class="suffix">,00</span></div>
+        <div class="unico">Uma parcela · sem recorrência</div>
+        <a href="https://pay.kiwify.com.br/0P9VrFD" target="_blank" class="plano-btn">
+          Comprar por R$ 97 →
+        </a>
+      </div>
+
+      <!-- ASSINATURA -->
+      <div class="plano-card destaque">
+        <div class="badge-top">★ Recomendado</div>
+        <div class="plano-label">Assinatura Mensal</div>
+        <div class="de">&nbsp;</div>
+        <div class="por"><span class="prefix">R$&nbsp;</span>87<span class="suffix">/mês</span></div>
+        <div class="unico">Acesso contínuo · cancele quando quiser</div>
+        <div class="badge-garantia">🛡️ Garantia de 7 dias</div>
+        <a href="https://pay.kiwify.com.br/vCSKzFJ" target="_blank" class="plano-btn">
+          Assinar agora →
+        </a>
+      </div>
+
     </div>
 
     <ul class="checklist">
@@ -664,9 +756,6 @@
       <li><span class="ck">✔</span> Manejo de interações CYP450 e polifarmácia</li>
     </ul>
 
-    <a href="https://pay.kiwify.com.br/0P9VrFD" target="_blank" class="btn-cta" style="font-size:1.2rem; padding: 20px 52px;">
-      Quero acesso agora por R$ 97 →
-    </a>
     <p class="urgencia-final">⚡ Vagas limitadas · Oferta por tempo limitado</p>
   </div>
 </section>
