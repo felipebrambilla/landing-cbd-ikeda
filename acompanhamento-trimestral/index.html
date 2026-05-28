@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acompanhamento Trimestral — Dr. Guilherme Ikeda</title>
+  <meta name="description" content="Acompanhamento trimestral com avaliação por bioimpedância e calorimetria indireta — o padrão ouro para entender o seu metabolismo. Plano nutricional, suplementar e assessoria on-line com Dr. Guilherme Ikeda." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --azul:     #2568a8;
+      --azul-cl:  #4a90cc;
+      --azul-bg:  #0d2845;
+      --azul-esc: #071828;
+      --ouro:     #c9a84c;
+      --ouro-cl:  #e8c96a;
+      --creme:    #f5f0e8;
+      --txt:      #1a1a1a;
+      --branco:   #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: var(--txt);
+      background: #fff;
+      line-height: 1.6;
+    }
+
+    /* ── UTILITÁRIOS ─────────────────────────────── */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+    .container-narrow { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+    .btn-cta {
+      display: inline-block;
+      background: var(--azul-cl);
+      color: #fff;
+      font-size: 1.12rem;
+      font-weight: 700;
+      padding: 18px 44px;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: .4px;
+      transition: background .2s, transform .15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-cta:hover { background: #1e5b9a; transform: translateY(-2px); }
+    .tag {
+      display: inline-block;
+      background: var(--ouro);
+      color: #1a1a1a;
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 12px;
+      border-radius: 3px;
+      margin-bottom: 16px;
+    }
+
+    /* ── HERO ─────────────────────────────────────── */
+    #hero {
+      background: linear-gradient(160deg, #071828 0%, #0d2845 55%, #0f2d4e 100%);
+      color: #fff;
+      padding: 70px 20px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 0%, rgba(74,144,204,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+    }
+    @media (max-width: 760px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+    }
+    #hero h1 {
+      font-size: clamp(1.8rem, 4.5vw, 2.7rem);
+      font-weight: 800;
+      line-height: 1.22;
+      margin-bottom: 18px;
+    }
+    #hero h1 em { font-style: normal; color: var(--ouro-cl); }
+    #hero p.sub {
+      font-size: 1.08rem;
+      color: rgba(255,255,255,.82);
+      max-width: 520px;
+      margin-bottom: 28px;
+    }
+    @media (max-width: 760px) { #hero p.sub { margin-left: auto; margin-right: auto; } }
+    .hero-feats {
+      list-style: none;
+      margin-bottom: 30px;
+    }
+    .hero-feats li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .98rem;
+      color: rgba(255,255,255,.88);
+      padding: 5px 0;
+    }
+    @media (max-width: 760px) { .hero-feats li { justify-content: center; text-align: left; } }
+    .hero-feats .ck { color: var(--ouro-cl); font-weight: 800; flex-shrink: 0; }
+    #hero .urgencia {
+      font-size: .88rem;
+      color: rgba(255,255,255,.6);
+      margin-top: 16px;
+    }
+    .hero-img {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,.45);
+      border: 1px solid rgba(201,168,76,.3);
+    }
+    .hero-img img { width: 100%; display: block; }
+    @media (max-width: 760px) {
+      .hero-img { max-width: 360px; margin: 0 auto; }
+    }
+
+    /* ── FAIXA DE PROVA ───────────────────────────── */
+    #faixa {
+      background: var(--creme);
+      padding: 36px 20px;
+    }
+    .faixa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .faixa-card { text-align: center; }
+    .faixa-card .ico { font-size: 1.7rem; }
+    .faixa-card .t { font-weight: 800; color: var(--azul); margin-top: 6px; font-size: 1.02rem; }
+    .faixa-card .d { font-size: .85rem; color: #555; margin-top: 2px; }
+
+    /* ── DOR ──────────────────────────────────────── */
+    #dor { padding: 64px 20px; background: #fff; }
+    #dor h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      max-width: 660px;
+      margin: 0 auto 18px;
+      text-align: center;
+      line-height: 1.3;
+    }
+    #dor h2 em { font-style: normal; color: var(--azul); }
+    #dor .lead {
+      max-width: 620px;
+      margin: 0 auto 36px;
+      text-align: center;
+      color: #444;
+      font-size: 1.05rem;
+    }
+    .lista-dor { max-width: 580px; margin: 0 auto; list-style: none; }
+    .lista-dor li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 1rem;
+      color: #333;
+    }
+    .lista-dor li:last-child { border-bottom: none; }
+    .lista-dor .ico { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── DIFERENCIAL (CALORIMETRIA) ───────────────── */
+    #diferencial {
+      background: var(--azul-bg);
+      color: #fff;
+      padding: 64px 20px;
+      text-align: center;
+    }
+    #diferencial .tag { background: var(--ouro); color: #1a1a1a; }
+    #diferencial h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      max-width: 700px;
+      margin: 0 auto 14px;
+      line-height: 1.3;
+    }
+    #diferencial h2 em { font-style: normal; color: var(--ouro-cl); }
+    #diferencial p.lead {
+      color: rgba(255,255,255,.82);
+      max-width: 600px;
+      margin: 0 auto 44px;
+      font-size: 1.05rem;
+    }
+    .dif-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    @media (max-width: 600px) { .dif-grid { grid-template-columns: 1fr; } }
+    .dif-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(201,168,76,.25);
+      border-radius: 10px;
+      padding: 28px 24px;
+      text-align: left;
+    }
+    .dif-card .icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .dif-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--ouro-cl); margin-bottom: 8px; }
+    .dif-card p { font-size: .92rem; color: rgba(255,255,255,.78); line-height: 1.55; }
+
+    /* ── O QUE ESTÁ INCLUSO ───────────────────────── */
+    #incluso { padding: 64px 20px; background: #fff; }
+    #incluso h2 {
+      text-align: center;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+    #incluso .lead { text-align: center; color: #555; max-width: 560px; margin: 0 auto 40px; }
+    .incluso-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .inc-card {
+      background: var(--creme);
+      border-radius: 10px;
+      padding: 24px 22px;
+      border-left: 4px solid var(--azul);
+    }
+    .inc-card .ico { font-size: 1.6rem; margin-bottom: 8px; }
+    .inc-card h3 { font-size: 1.02rem; font-weight: 700; color: var(--txt); margin-bottom: 6px; }
+    .inc-card p { font-size: .9rem; color: #555; line-height: 1.55; }
+
+    /* ── AUTORIDADE ───────────────────────────────── */
+    #autoridade { padding: 64px 20px; background: var(--creme); }
+    .autoridade-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    @media (max-width: 680px) {
+      .autoridade-inner { grid-template-columns: 1fr; text-align: center; }
+    }
+    .autoridade-foto {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 36px rgba(13,40,69,.22);
+    }
+    .autoridade-foto img { width: 100%; display: block; }
+    @media (max-width: 680px) { .autoridade-foto { max-width: 280px; margin: 0 auto; } }
+    #autoridade .tag { margin-bottom: 10px; }
+    #autoridade h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 6px; }
+    #autoridade .role { font-size: .92rem; color: var(--azul); font-weight: 600; margin-bottom: 14px; }
+    #autoridade p { color: #444; font-size: .98rem; margin-bottom: 10px; line-height: 1.65; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    @media (max-width: 680px) { .badges { justify-content: center; } }
+    .badge {
+      background: #fff;
+      border: 1px solid #d0c8b8;
+      color: #444;
+      font-size: .78rem;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 4px;
+    }
+
+    /* ── PARA QUEM É ──────────────────────────────── */
+    #para-quem { background: #fff; padding: 64px 20px; text-align: center; }
+    #para-quem h2 { font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800; margin-bottom: 10px; }
+    #para-quem .lead { color: #555; max-width: 520px; margin: 0 auto 36px; }
+    .pq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .pq-card {
+      background: var(--creme);
+      border-radius: 8px;
+      padding: 22px 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      text-align: left;
+      border-left: 4px solid var(--azul);
+    }
+    .pq-card .pq-ico { font-size: 1.5rem; flex-shrink: 0; }
+    .pq-card p { font-size: .92rem; color: #333; line-height: 1.55; }
+
+    /* ── PREÇO ────────────────────────────────────── */
+    #preco {
+      background: linear-gradient(160deg, #071828 0%, #0d2845 100%);
+      color: #fff;
+      padding: 72px 20px;
+      text-align: center;
+    }
+    #preco h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      max-width: 640px;
+      margin: 0 auto 12px;
+      line-height: 1.3;
+    }
+    #preco h2 em { font-style: normal; color: var(--ouro-cl); }
+    #preco .lead { color: rgba(255,255,255,.75); max-width: 560px; margin: 0 auto 44px; }
+    .planos-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      max-width: 760px;
+      margin: 0 auto;
+      align-items: stretch;
+    }
+    @media (max-width: 720px) { .planos-grid { grid-template-columns: 1fr; } }
+    .plano-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 14px;
+      padding: 34px 28px;
+      text-align: left;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .plano-card.destaque {
+      border-color: var(--ouro);
+      background: rgba(201,168,76,.08);
+      box-shadow: 0 0 32px rgba(201,168,76,.18);
+    }
+    .badge-top {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--ouro);
+      color: #1a1a1a;
+      font-size: .68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      padding: 4px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .plano-label {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,.55);
+      margin-bottom: 6px;
+    }
+    .plano-card.destaque .plano-label { color: var(--ouro-cl); }
+    .plano-nome { font-size: 1.25rem; font-weight: 800; margin-bottom: 16px; }
+    .plano-card .por {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--ouro-cl);
+      line-height: 1;
+    }
+    .plano-card .por span.prefix { font-size: 1.2rem; vertical-align: top; line-height: 1.6; font-weight: 700; }
+    .plano-card .por span.x { font-size: 1.3rem; font-weight: 700; }
+    .plano-total { font-size: .85rem; color: rgba(255,255,255,.5); margin-top: 8px; margin-bottom: 22px; }
+    .plano-feats { list-style: none; margin-bottom: 24px; flex-grow: 1; }
+    .plano-feats li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      font-size: .94rem;
+      color: rgba(255,255,255,.85);
+    }
+    .plano-feats .ck { color: var(--azul-cl); font-size: 1.05rem; flex-shrink: 0; margin-top: 1px; }
+    .plano-card.destaque .plano-feats .ck { color: var(--ouro-cl); }
+    .plano-feats .tudo { font-weight: 700; color: #fff; }
+    .plano-btn {
+      display: block;
+      background: var(--azul-cl);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 15px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      text-align: center;
+      transition: background .2s, transform .15s;
+    }
+    .plano-btn:hover { background: #1e5b9a; transform: translateY(-2px); }
+    .plano-card.destaque .plano-btn { background: var(--ouro); color: #1a1a1a; }
+    .plano-card.destaque .plano-btn:hover { background: var(--ouro-cl); }
+    #preco .obs { font-size: .85rem; color: rgba(255,255,255,.5); margin-top: 28px; }
+
+    /* ── FAQ ──────────────────────────────────────── */
+    #faq { padding: 64px 20px; background: #fff; }
+    #faq h2 { text-align: center; font-size: 1.7rem; font-weight: 800; margin-bottom: 36px; }
+    .faq-list { max-width: 660px; margin: 0 auto; }
+    details { border-bottom: 1px solid #e8e8e8; padding: 6px 0; }
+    summary {
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 14px 0;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: var(--txt);
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-size: 1.4rem; color: var(--azul); transition: transform .2s; flex-shrink: 0; }
+    details[open] summary::after { content: '−'; }
+    details p { font-size: .95rem; color: #444; padding-bottom: 16px; line-height: 1.65; }
+
+    /* ── CTA FINAL ────────────────────────────────── */
+    #cta-final { background: var(--creme); padding: 60px 20px; text-align: center; }
+    #cta-final h2 { font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 800; margin-bottom: 10px; }
+    #cta-final p { color: #555; max-width: 520px; margin: 0 auto 28px; }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      background: #111;
+      color: rgba(255,255,255,.4);
+      text-align: center;
+      font-size: .8rem;
+      padding: 28px 20px;
+    }
+    footer a { color: rgba(255,255,255,.4); text-decoration: none; }
+
+    /* ── STICKY CTA MOBILE ────────────────────────── */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--azul);
+      padding: 14px 20px;
+      text-align: center;
+      z-index: 999;
+      box-shadow: 0 -2px 12px rgba(0,0,0,.2);
+    }
+    .sticky-cta a { color: #fff; font-weight: 700; font-size: 1rem; text-decoration: none; display: block; }
+    @media (max-width: 600px) { .sticky-cta { display: block; } body { padding-bottom: 60px; } }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="tag">Acompanhamento Trimestral</span>
+      <h1>
+        Pare de adivinhar o seu corpo.<br>
+        <em>Meça o seu metabolismo</em> e transforme com ciência.
+      </h1>
+      <p class="sub">
+        Um acompanhamento de 90 dias com avaliação por bioimpedância e
+        calorimetria indireta — o padrão ouro para enxergar exatamente como
+        o seu metabolismo funciona. Plano nutricional, suplementar e
+        assessoria on-line direto com o Dr. Guilherme Ikeda.
+      </p>
+      <ul class="hero-feats">
+        <li><span class="ck">✓</span> Calorimetria indireta + bioimpedância de verdade</li>
+        <li><span class="ck">✓</span> Plano nutricional e suplementar individualizado</li>
+        <li><span class="ck">✓</span> Assessoria on-line durante todo o período</li>
+      </ul>
+      <a href="#preco" class="btn-cta">Quero começar meu acompanhamento →</a>
+      <p class="urgencia">⚡ Vagas limitadas por trimestre</p>
+    </div>
+    <div class="hero-img">
+      <img src="dr-ikeda-hero.jpg" alt="Dr. Guilherme Ikeda" />
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FAIXA DE PROVA
+════════════════════════════════════════════════ -->
+<section id="faixa">
+  <div class="faixa-grid">
+    <div class="faixa-card">
+      <div class="ico">🔬</div>
+      <div class="t">Padrão ouro</div>
+      <div class="d">Calorimetria indireta do seu metabolismo</div>
+    </div>
+    <div class="faixa-card">
+      <div class="ico">📊</div>
+      <div class="t">Dados, não achismo</div>
+      <div class="d">Bioimpedância e avaliação completa</div>
+    </div>
+    <div class="faixa-card">
+      <div class="ico">📱</div>
+      <div class="t">Suporte contínuo</div>
+      <div class="d">Assessoria on-line por 90 dias</div>
+    </div>
+    <div class="faixa-card">
+      <div class="ico">🎯</div>
+      <div class="t">Plano sob medida</div>
+      <div class="d">Nutrição e suplementação individual</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     DOR
+════════════════════════════════════════════════ -->
+<section id="dor">
+  <div class="container-narrow">
+    <h2>Você já tentou de tudo —<br><em>mas ninguém nunca mediu o seu metabolismo.</em></h2>
+    <p class="lead">
+      A maioria das dietas e protocolos são chutes baseados em fórmulas genéricas.
+      Sem saber quantas calorias o seu corpo realmente queima, todo plano vira tentativa e erro.
+    </p>
+
+    <ul class="lista-dor">
+      <li><span class="ico">⚠️</span><span>Dietas genéricas que funcionam por um mês e depois travam</span></li>
+      <li><span class="ico">⚠️</span><span>Cálculo de calorias por fórmula, sem medir o seu gasto real</span></li>
+      <li><span class="ico">⚠️</span><span>Balança que sobe e desce sem saber se é gordura, músculo ou água</span></li>
+      <li><span class="ico">⚠️</span><span>Suplementação no escuro, sem critério ou acompanhamento</span></li>
+      <li><span class="ico">⚠️</span><span>Falta de alguém de verdade respondendo entre uma consulta e outra</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     DIFERENCIAL — CALORIMETRIA
+════════════════════════════════════════════════ -->
+<section id="diferencial">
+  <div class="container-narrow">
+    <span class="tag">O diferencial</span>
+    <h2>A calorimetria indireta é o<br><em>padrão ouro</em> para ler o seu metabolismo</h2>
+    <p class="lead">
+      Em vez de estimar quantas calorias você gasta com uma fórmula de tabela,
+      nós medimos. Isso muda completamente a precisão do seu plano — e os seus resultados.
+    </p>
+
+    <div class="dif-grid">
+      <div class="dif-card">
+        <div class="icon">🔬</div>
+        <h3>Calorimetria indireta</h3>
+        <p>Medimos o seu gasto energético real — o padrão ouro para definir exatamente quanto o seu corpo precisa.</p>
+      </div>
+      <div class="dif-card">
+        <div class="icon">⚖️</div>
+        <h3>Bioimpedância</h3>
+        <p>Composição corporal detalhada: gordura, massa muscular e água. Evolução medida, não imaginada.</p>
+      </div>
+      <div class="dif-card">
+        <div class="icon">🥗</div>
+        <h3>Plano nutricional</h3>
+        <p>Estratégia alimentar construída sobre os seus números reais — e ajustada ao longo dos 90 dias.</p>
+      </div>
+      <div class="dif-card">
+        <div class="icon">💊</div>
+        <h3>Plano suplementar</h3>
+        <p>Suplementação com critério, alinhada à sua avaliação e aos seus objetivos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     O QUE ESTÁ INCLUSO
+════════════════════════════════════════════════ -->
+<section id="incluso">
+  <div class="container">
+    <h2>O que está incluso no acompanhamento</h2>
+    <p class="lead">90 dias de acompanhamento estruturado, do diagnóstico ao plano em execução.</p>
+
+    <div class="incluso-grid">
+      <div class="inc-card">
+        <div class="ico">📱</div>
+        <h3>Assessoria on-line completa</h3>
+        <p>Suporte e orientação durante todo o período do acompanhamento.</p>
+      </div>
+      <div class="inc-card">
+        <div class="ico">🩺</div>
+        <h3>Consultas no período</h3>
+        <p>Consultas ao longo do trimestre para acompanhar e ajustar o plano.</p>
+      </div>
+      <div class="inc-card">
+        <div class="ico">🔬</div>
+        <h3>Bioimpedância + calorimetria</h3>
+        <p>Avaliações com bioimpedância e calorimetria indireta — o padrão ouro do metabolismo.</p>
+      </div>
+      <div class="inc-card">
+        <div class="ico">🥗</div>
+        <h3>Avaliação e consulta nutricional</h3>
+        <p>Avaliação nutricional completa para construir a sua estratégia alimentar.</p>
+      </div>
+      <div class="inc-card">
+        <div class="ico">📋</div>
+        <h3>Plano nutricional</h3>
+        <p>Plano alimentar individualizado, baseado nos seus dados reais.</p>
+      </div>
+      <div class="inc-card">
+        <div class="ico">💊</div>
+        <h3>Plano suplementar</h3>
+        <p>Protocolo de suplementação alinhado aos seus objetivos e avaliação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     AUTORIDADE
+════════════════════════════════════════════════ -->
+<section id="autoridade">
+  <div class="autoridade-inner">
+    <div class="autoridade-foto">
+      <img src="dr-ikeda-palestra.png" alt="Dr. Guilherme Ikeda em palestra" />
+    </div>
+    <div>
+      <span class="tag">Quem te acompanha</span>
+      <h2>Dr. Guilherme Ikeda</h2>
+      <p class="role">Médico — Metabolismo, Nutrição e Performance</p>
+      <p>
+        Une avaliação metabólica de alta precisão — calorimetria indireta e
+        bioimpedância — a um acompanhamento próximo e contínuo. A proposta é
+        simples: substituir o achismo por dados e construir um plano que faça
+        sentido para o seu corpo.
+      </p>
+      <p>
+        Mais do que entregar um plano e desaparecer, o acompanhamento trimestral
+        existe para caminhar com você dos primeiros números até os resultados,
+        ajustando a rota ao longo do caminho.
+      </p>
+      <div class="badges">
+        <span class="badge">Calorimetria indireta</span>
+        <span class="badge">Bioimpedância</span>
+        <span class="badge">Nutrição & suplementação</span>
+        <span class="badge">Acompanhamento on-line</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     PARA QUEM É
+════════════════════════════════════════════════ -->
+<section id="para-quem">
+  <div class="container">
+    <h2>Para quem é esse acompanhamento</h2>
+    <p class="lead">Para quem quer parar de tentar no escuro e tratar o próprio corpo com precisão.</p>
+    <div class="pq-grid">
+      <div class="pq-card">
+        <div class="pq-ico">✅</div>
+        <p>Quem já tentou várias dietas e quer um plano baseado nos números reais do próprio metabolismo</p>
+      </div>
+      <div class="pq-card">
+        <div class="pq-ico">✅</div>
+        <p>Quem busca emagrecimento, ganho de massa ou recomposição corporal com método</p>
+      </div>
+      <div class="pq-card">
+        <div class="pq-ico">✅</div>
+        <p>Quem quer acompanhamento próximo e contínuo, não só uma consulta isolada</p>
+      </div>
+      <div class="pq-card">
+        <div class="pq-ico">✅</div>
+        <p>Quem valoriza avaliação completa, suplementação com critério e ajuste ao longo do tempo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     PREÇO
+════════════════════════════════════════════════ -->
+<section id="preco">
+  <div class="container">
+    <h2>Escolha o seu plano de<br><em>acompanhamento trimestral</em></h2>
+    <p class="lead">Dois caminhos para 90 dias de acompanhamento com avaliação metabólica de verdade.</p>
+
+    <div class="planos-grid">
+
+      <!-- PLANO 1 -->
+      <div class="plano-card">
+        <div class="plano-label">Opção 1</div>
+        <div class="plano-nome">Plano Essencial</div>
+        <div class="por"><span class="x">6x </span><span class="prefix">R$&nbsp;</span>497</div>
+        <div class="plano-total">6 parcelas de R$ 497</div>
+        <ul class="plano-feats">
+          <li><span class="ck">✓</span> Assessoria on-line completa</li>
+          <li><span class="ck">✓</span> Consultas durante o período</li>
+          <li><span class="ck">✓</span> Bioimpedância e calorimetria indireta</li>
+          <li><span class="ck">✓</span> Avaliação e consulta nutricional</li>
+          <li><span class="ck">✓</span> Plano nutricional e suplementar</li>
+        </ul>
+        <a href="https://pay.kiwify.com.br/qMh5e7A" target="_blank" class="plano-btn">Escolher Plano Essencial →</a>
+      </div>
+
+      <!-- PLANO 2 -->
+      <div class="plano-card destaque">
+        <div class="badge-top">★ Mais completo</div>
+        <div class="plano-label">Opção 2</div>
+        <div class="plano-nome">Plano Completo</div>
+        <div class="por"><span class="x">12x </span><span class="prefix">R$&nbsp;</span>497</div>
+        <div class="plano-total">12 parcelas de R$ 497</div>
+        <ul class="plano-feats">
+          <li><span class="ck">✓</span> <span class="tudo">Tudo da Opção 1, e mais:</span></li>
+          <li><span class="ck">✓</span> Todas as medicações necessárias inclusas</li>
+          <li><span class="ck">✓</span> Reposição de vitaminas e minerais inclusa</li>
+          <li><span class="ck">✓</span> Insumos hormonais inclusos <em>(exceto implantes)</em></li>
+        </ul>
+        <a href="https://pay.kiwify.com.br/ixObXjG" target="_blank" class="plano-btn">Escolher Plano Completo →</a>
+      </div>
+
+    </div>
+
+    <p class="obs">Vagas limitadas por trimestre · As condições do acompanhamento são detalhadas na contratação.</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container-narrow">
+    <h2>Perguntas frequentes</h2>
+    <div class="faq-list">
+
+      <details>
+        <summary>O que é calorimetria indireta e por que ela importa?</summary>
+        <p>É o exame considerado padrão ouro para medir o seu gasto energético — quantas calorias o seu corpo realmente queima em repouso. Em vez de estimar por fórmulas genéricas, o seu plano nutricional é construído sobre o seu número real, o que torna a estratégia muito mais precisa.</p>
+      </details>
+
+      <details>
+        <summary>Quanto tempo dura o acompanhamento?</summary>
+        <p>O acompanhamento é trimestral — 90 dias de suporte contínuo, com avaliações, consultas durante o período e assessoria on-line do início ao fim.</p>
+      </details>
+
+      <details>
+        <summary>Qual a diferença entre a Opção 1 e a Opção 2?</summary>
+        <p>A Opção 1 inclui todo o acompanhamento: assessoria on-line, consultas, bioimpedância, calorimetria indireta, avaliação nutricional e plano nutricional e suplementar. A Opção 2 inclui tudo isso e ainda as medicações necessárias, reposição de vitaminas e minerais e insumos hormonais (exceto implantes).</p>
+      </details>
+
+      <details>
+        <summary>As medicações e insumos estão mesmo inclusos na Opção 2?</summary>
+        <p>Sim. Na Opção 2 estão inclusas todas as medicações necessárias, a reposição de vitaminas e minerais e os insumos hormonais — com exceção dos implantes, que não fazem parte do pacote.</p>
+      </details>
+
+      <details>
+        <summary>O acompanhamento é on-line ou presencial?</summary>
+        <p>A assessoria e o suporte são on-line ao longo de todo o período. As avaliações (bioimpedância e calorimetria) e consultas seguem o formato combinado na contratação.</p>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════════ -->
+<section id="cta-final">
+  <div class="container">
+    <h2>Chega de adivinhar. Hora de medir.</h2>
+    <p>
+      Em 90 dias você sai do achismo para um plano construído sobre os números
+      reais do seu metabolismo — com acompanhamento de verdade do começo ao fim.
+    </p>
+    <a href="#preco" class="btn-cta">Ver os planos →</a>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer>
+  <p>© 2026 Dr. Guilherme Ikeda · <a href="#">Política de Privacidade</a> · <a href="#">Termos de Uso</a></p>
+  <p style="margin-top:8px">As condições, avaliações e resultados são individuais e variam conforme cada caso.</p>
+</footer>
+
+<!-- ════════════════════════════════════════════════
+     STICKY CTA (MOBILE)
+════════════════════════════════════════════════ -->
+<div class="sticky-cta">
+  <a href="#preco">Ver planos do acompanhamento →</a>
+</div>
+
+</body>
+</html>
