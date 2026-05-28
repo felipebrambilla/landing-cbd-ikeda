@@ -381,6 +381,24 @@
     .plano-card .por span.prefix { font-size: 1.2rem; vertical-align: top; line-height: 1.6; font-weight: 700; }
     .plano-card .por span.x { font-size: 1.3rem; font-weight: 700; }
     .plano-total { font-size: .85rem; color: rgba(255,255,255,.5); margin-top: 8px; margin-bottom: 22px; }
+    .plano-cond {
+      display: inline-block;
+      background: rgba(201,168,76,.18);
+      color: var(--ouro-cl);
+      font-size: .68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .plano-card .de {
+      font-size: .92rem;
+      color: rgba(255,255,255,.45);
+      text-decoration: line-through;
+      margin-bottom: 6px;
+    }
     .plano-feats { list-style: none; margin-bottom: 24px; flex-grow: 1; }
     .plano-feats li {
       display: flex;
@@ -699,6 +717,8 @@
       <div class="plano-card">
         <div class="plano-label">Opção 1</div>
         <div class="plano-nome">Plano Essencial</div>
+        <span class="plano-cond">Condição especial</span>
+        <div class="de">De R$ 3.497</div>
         <div class="por"><span class="x">6x </span><span class="prefix">R$&nbsp;</span>497</div>
         <div class="plano-total">6 parcelas de R$ 497</div>
         <ul class="plano-feats">
@@ -716,6 +736,8 @@
         <div class="badge-top">★ Mais completo</div>
         <div class="plano-label">Opção 2</div>
         <div class="plano-nome">Plano Completo</div>
+        <span class="plano-cond">Condição especial</span>
+        <div class="de">De R$ 9.997</div>
         <div class="por"><span class="x">12x </span><span class="prefix">R$&nbsp;</span>497</div>
         <div class="plano-total">12 parcelas de R$ 497</div>
         <ul class="plano-feats">
